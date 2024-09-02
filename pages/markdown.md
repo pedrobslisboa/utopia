@@ -8,6 +8,3 @@
   * Make things **bold** or *italic*
   * Embed snippets of `code`
   * Create [links](/)
-  * ...
-
-<small>Sample content borrowed from [markdown-to-jsx](https://markdown-to-jsx.quantizor.dev/), thanks!</small>

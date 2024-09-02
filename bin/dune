@@ -7,6 +7,10 @@
   server-reason-react.react
   server-reason-react.reactDom
   unix
-  dynlink)
+  eio.unix
+  eio.core
+  dynlink
+  eio
+  eio_main)
  (preprocess
   (pps server-reason-react.ppx)))

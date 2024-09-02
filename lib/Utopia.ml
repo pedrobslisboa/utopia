@@ -19,7 +19,7 @@ end
    end) *)
 
 (* let static_pages : (module Page) list ref = ref [] *)
-let loaded_pages : (module Loader_page) list ref = ref []
+let loaded_pages : (module Loader_page) Seq.t ref = ref (List.to_seq [])
 
 let register (type a) ~path ~(loader : unit -> a)
     (component : a -> React.element) =
@@ -30,7 +30,7 @@ let register (type a) ~path ~(loader : unit -> a)
     let loader = loader
     let make = component
   end in
-  loaded_pages := (module P : Loader_page) :: !loaded_pages
+  loaded_pages := Seq.cons (module P : Loader_page) !loaded_pages
 
 let page ~path (component : unit -> React.element) =
   let module P = struct
@@ -40,9 +40,8 @@ let page ~path (component : unit -> React.element) =
     let loader () = ()
     let make = component
   end in
-  loaded_pages := (module P : Loader_page) :: !loaded_pages
+  loaded_pages := Seq.cons (module P : Loader_page) !loaded_pages
 
-let get_pages () : (module Loader_page) list =
-  match !loaded_pages with
-  | [] -> failwith "There are no registered Pages"
-  | pages -> pages
+let get_pages () : (module Loader_page) Seq.t =
+  if Seq.is_empty !loaded_pages then failwith "There are no registered Pages";
+  !loaded_pages
