@@ -1,0 +1,7 @@
+(library
+ (name utopia_ppx)
+ (public_name utopia.ppx)
+ (kind ppx_rewriter)
+ (libraries ppxlib ppxlib.astlib)
+ (preprocess
+  (pps ppxlib.metaquot)))

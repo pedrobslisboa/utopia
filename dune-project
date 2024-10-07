@@ -29,6 +29,7 @@
 
   ;; Library dependencies
   cmarkit
+  ppxlib
 
   ;; Test dependencies
   (alcotest :with-test)

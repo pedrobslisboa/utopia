@@ -1,0 +1,6 @@
+(executable
+ (name demo)
+ (public_name ppx_demo)
+ (libraries server-reason-react.url-native)
+ (preprocess
+  (pps utopia.ppx)))
